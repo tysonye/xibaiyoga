@@ -7,6 +7,7 @@ import Courses from '../../components/Courses';
 import OnlineCourses from '../../components/OnlineCourses';
 import Teachers from '../../components/Teachers';
 import Testimonials from '../../components/Testimonials';
+import BookingForm from '../../components/BookingForm';
 import Membership from '../../components/Membership';
 import Contact from '../../components/Contact';
 
@@ -22,6 +23,7 @@ export default function Home() {
       <OnlineCourses />
       <Teachers />
       <Testimonials />
+      <BookingForm />
       <Membership />
       <Contact />
       <footer className="bg-gray-800 text-white py-12">

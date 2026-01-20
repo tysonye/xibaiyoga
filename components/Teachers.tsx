@@ -5,6 +5,7 @@ import { FaCertificate } from 'react-icons/fa';
 import { teachers } from '../data/siteData';
 import { Card } from './ui/Card';
 import ScrollReveal from './ScrollReveal';
+import { LazyImage } from './ui/LazyImage';
 
 const TeacherSection = () => {
   return (
@@ -25,13 +26,15 @@ const TeacherSection = () => {
                 transition={{ duration: 0.3 }}
               >
                 <Card glass={true} className="h-full overflow-hidden">
-                  <motion.img
-                    src={teacher.image}
-                    alt={teacher.name}
-                    className="w-full h-64 object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  />
+                  <div className="overflow-hidden">
+                    <LazyImage
+                      src={teacher.image}
+                      alt={teacher.name}
+                      width={400}
+                      height={300}
+                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-brand-primary mb-1">
                       {teacher.name}

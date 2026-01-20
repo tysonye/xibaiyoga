@@ -1,87 +1,108 @@
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { FaArrowDown } from 'react-icons/fa';
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* 背景图片 */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-transparent z-10"></div>
+      {/* 动态背景层 - 视差效果 */}
+      <motion.div style={{ y: y1, opacity }} className="absolute inset-0 z-0">
+        {/* 视频背景（降级为图片） */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/90 via-brand-dark/70 to-transparent z-10" />
         <img
           src="https://picsum.photos/seed/yoga-hero/1920/1080"
           alt="瑜伽练习"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover scale-110"
+          style={{
+            transform: `translateX(${mousePosition.x}px) translateY(${mousePosition.y}px)`
+          }}
         />
+      </motion.div>
+
+      {/* 粒子背景层 */}
+      <div className="absolute inset-0 z-5">
+        <div className="absolute w-96 h-96 -top-20 -left-20 bg-brand-accent/20 blur-3xl rounded-full animate-pulse" />
+        <div className="absolute w-80 h-80 bottom-20 right-20 bg-brand-secondary/20 blur-3xl rounded-full animate-pulse delay-1000" />
       </div>
 
-      {/* 内容 */}
-      <div className="relative z-20 text-center text-white px-4">
-        <motion.h2 
+      {/* 内容层 */}
+      <motion.div
+        style={{ y: y2, opacity }}
+        className="relative z-20 text-center text-white px-4 max-w-4xl"
+      >
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-tight"
         >
           发现内心的平静与力量
         </motion.h2>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-xl md:text-2xl mb-12 text-gray-200 font-light"
         >
           在希柏瑜伽，找到属于你的瑜伽之旅
         </motion.p>
-        
-        <motion.a
+
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-          whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(0, 0, 0, 0.3)" }}
-          whileTap={{ scale: 0.98 }}
-          href="#courses"
-          className="inline-block bg-brand-primary hover:bg-brand-secondary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform"
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector('#courses')?.scrollIntoView({ behavior: 'smooth' });
-          }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex gap-4 justify-center"
         >
-          立即预约
-        </motion.a>
-      </div>
-
-      {/* 向下滚动箭头 */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce"
-      >
-        <a
-          href="#about"
-          className="text-white hover:text-brand-accent transition-colors duration-300"
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
-          }}
-        >
-          <svg
-            className="h-8 w-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href="#courses"
+            className="px-8 py-4 bg-brand-accent hover:bg-brand-secondary text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-brand-accent/30"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </a>
+            立即预约
+          </a>
+          <a
+            href="#about"
+            className="px-8 py-4 border-2 border-white/50 hover:border-white text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/10"
+          >
+            了解更多
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* 滚动提示 */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+      >
+        <motion.a
+          href="#about"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="text-white/70 hover:text-white transition-colors"
+        >
+          <FaArrowDown className="text-2xl" />
+        </motion.a>
       </motion.div>
     </section>
   );

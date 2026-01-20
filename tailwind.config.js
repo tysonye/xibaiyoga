@@ -7,12 +7,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-primary': '#2D5A3D',
-        'brand-secondary': '#4A7C5F',
-        'brand-accent': '#E8B4A6',
-        'brand-dark': '#1A2F23',
-        'brand-light': '#F5F8F6',
+        brand: {
+          primary: '#2D5A3D',      // 森林绿 - 主色
+          secondary: '#4A7C5F',    // 柔和绿 - 悬停/强调
+          accent: '#E8B4A6',       // 暖粉 - 高亮/CTA
+          dark: '#1A2F23',         // 深绿 - 背景/文字
+          light: '#F5F8F6',        // 浅绿灰 - 分区背景
+        }
       },
+      fontFamily: {
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Georgia', 'serif'], // 标题用衬线体，更有品质感
+      }
     },
   },
   plugins: [],

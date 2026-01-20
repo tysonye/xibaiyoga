@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { galleryImages } from '../data/siteData';
 import ScrollReveal from './ScrollReveal';
+import { LazyImage } from './ui/LazyImage';
 
 const Gallery = () => {
   return (
@@ -22,9 +23,11 @@ const Gallery = () => {
                 whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(0, 0, 0, 0.2)" }}
                 className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300"
               >
-                <img
+                <LazyImage
                   src={image.src}
                   alt={image.alt}
+                  width={400}
+                  height={300}
                   className="w-full h-64 sm:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
