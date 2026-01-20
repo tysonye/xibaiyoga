@@ -1,60 +1,36 @@
-# 希柏瑜伽生活馆
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-一个托管在GitHub Pages上的瑜伽生活馆网站，展示瑜伽相关的照片、视频、课程介绍和在线课程。
+## Getting Started
 
-## 网站内容
+First, run the development server:
 
-- **首页**：展示希柏瑜伽的品牌形象和核心价值
-- **关于瑜伽**：介绍瑜伽的起源、发展和益处
-- **照片展示**：展示瑜伽练习的美好瞬间
-- **视频展示**：提供专业瑜伽导师的示范视频
-- **课程介绍**：详细介绍馆内提供的各类瑜伽课程
-- **在线课程**：提供可购买的在线瑜伽课程
-- **联系我们**：提供联系方式和留言表单
-
-## 技术栈
-
-- **HTML5**：页面结构
-- **CSS3**：样式设计，包括响应式布局
-- **JavaScript**：交互功能
-- **GitHub Pages**：网站托管
-
-## 部署说明
-
-1. 将代码上传到GitHub仓库
-2. 在仓库设置中，找到「Pages」选项
-3. 选择「Source」为「main」分支（或「master」分支，取决于你的仓库设置）
-4. 选择根目录（/）作为部署目录
-5. 点击「Save」保存设置
-6. 等待几分钟，GitHub Pages会自动构建并部署网站
-7. 部署完成后，你可以通过 `https://yourusername.github.io/repositoryname` 访问网站
-
-## 本地开发
-
-1. 克隆仓库到本地
-2. 直接在浏览器中打开 `index.html` 文件即可查看效果
-3. 对 `index.html`、`style.css` 或 `script.js` 文件进行修改后，刷新浏览器即可看到更新
-
-## 项目结构
-
-```
-xibaiyoga/
-├── index.html          # 主页面文件
-├── style.css           # 样式文件
-├── script.js           # JavaScript文件
-└── README.md           # 项目说明文件
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## 样式特点
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- 采用自然、平静的瑜伽风格配色（绿色为主色调）
-- 响应式设计，适配各种屏幕尺寸
-- 平滑滚动效果
-- 图片懒加载
-- 现代化的卡片式布局
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 版权信息
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-网站使用的图片和视频均来自Unsplash和YouTube，仅供演示使用。
+## Learn More
 
-© 2024 希柏瑜伽. 保留所有权利.
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
