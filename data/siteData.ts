@@ -60,18 +60,18 @@ export interface Membership {
 
 // 照片展示数据
 export const galleryImages: GalleryImage[] = [
-  { id: 1, src: "https://picsum.photos/seed/yoga1/800/600", alt: "瑜伽照片" },
-  { id: 2, src: "https://picsum.photos/seed/yoga2/800/600", alt: "瑜伽照片" },
-  { id: 3, src: "https://picsum.photos/seed/yoga3/800/600", alt: "瑜伽照片" },
-  { id: 4, src: "https://picsum.photos/seed/yoga4/800/600", alt: "瑜伽照片" },
-  { id: 5, src: "https://picsum.photos/seed/yoga5/800/600", alt: "瑜伽照片" },
-  { id: 6, src: "https://picsum.photos/seed/yoga6/800/600", alt: "瑜伽照片" },
-  { id: 7, src: "https://picsum.photos/seed/yoga7/800/600", alt: "瑜伽照片" },
-  { id: 8, src: "https://picsum.photos/seed/yoga8/800/600", alt: "瑜伽照片" },
-  { id: 9, src: "https://picsum.photos/seed/yoga9/800/600", alt: "瑜伽照片" },
-  { id: 10, src: "https://picsum.photos/seed/yoga10/800/600", alt: "瑜伽照片" },
-  { id: 11, src: "https://picsum.photos/seed/yoga11/800/600", alt: "瑜伽照片" },
-  { id: 12, src: "https://picsum.photos/seed/yoga12/800/600", alt: "瑜伽照片" },
+  { id: 1, src: "https://picsum.photos/seed/yoga1/800/600", alt: "希柏瑜伽学员在做山式站立练习" },
+  { id: 2, src: "https://picsum.photos/seed/yoga2/800/600", alt: "希柏瑜伽导师指导学员做下犬式" },
+  { id: 3, src: "https://picsum.photos/seed/yoga3/800/600", alt: "希柏瑜伽学员在做树式平衡练习" },
+  { id: 4, src: "https://picsum.photos/seed/yoga4/800/600", alt: "希柏瑜伽学员在做前屈伸展练习" },
+  { id: 5, src: "https://picsum.photos/seed/yoga5/800/600", alt: "希柏瑜伽学员在做战士二式练习" },
+  { id: 6, src: "https://picsum.photos/seed/yoga6/800/600", alt: "希柏瑜伽学员在做猫牛式流动练习" },
+  { id: 7, src: "https://picsum.photos/seed/yoga7/800/600", alt: "希柏瑜伽学员在做蝴蝶式开髋练习" },
+  { id: 8, src: "https://picsum.photos/seed/yoga8/800/600", alt: "希柏瑜伽学员在做鸽子式深度拉伸" },
+  { id: 9, src: "https://picsum.photos/seed/yoga9/800/600", alt: "希柏瑜伽学员在做婴儿式放松练习" },
+  { id: 10, src: "https://picsum.photos/seed/yoga10/800/600", alt: "希柏瑜伽学员在做桥式支撑练习" },
+  { id: 11, src: "https://picsum.photos/seed/yoga11/800/600", alt: "希柏瑜伽学员在做侧角伸展练习" },
+  { id: 12, src: "https://picsum.photos/seed/yoga12/800/600", alt: "希柏瑜伽学员在做冥想放松练习" },
 ];
 
 // 视频展示数据

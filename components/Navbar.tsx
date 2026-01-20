@@ -115,12 +115,12 @@ const Navbar = () => {
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="container mx-auto px-4 py-3 space-y-1">
+          <div className="container mx-auto px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-primary hover:bg-gray-100 font-medium transition-colors duration-200"
+                className="block px-4 py-3 rounded-lg text-gray-700 hover:text-brand-primary hover:bg-gray-100 font-medium transition-colors duration-200 text-lg"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
@@ -129,6 +129,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.indexOf(link) * 0.05 }}
+                role="menuitem"
               >
                 {link.name}
               </motion.a>

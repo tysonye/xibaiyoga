@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa';
 import ScrollReveal from './ScrollReveal';
+import SocialShare from './SocialShare';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -148,6 +149,9 @@ const Contact = () => {
                   </div>
                 </motion.div>
               </div>
+              
+              {/* 社交媒体分享 */}
+              <SocialShare />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.4}>
