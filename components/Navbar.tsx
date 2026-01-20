@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const navLinks = [
     { name: '首页', href: '#home' },
@@ -18,38 +20,63 @@ const Navbar = () => {
     { name: '联系我们', href: '#contact' },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-md z-50">
+    <motion.nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-green-800">希柏瑜伽</h1>
-          </div>
+          <motion.div 
+            className="flex items-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
+            <h1 className="text-2xl font-bold text-brand-primary">希柏瑜伽</h1>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.name}
                 href={link.href}
-                className="text-gray-700 hover:text-green-800 font-medium transition-colors duration-200"
+                className={`font-medium transition-colors duration-300 ${scrolled ? 'text-gray-700 hover:text-brand-primary' : 'text-white hover:text-brand-accent'}`}
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
                 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-700 hover:text-green-800 hover:bg-gray-100 focus:outline-none"
+              className={`p-2 rounded-md transition-colors duration-300 focus:outline-none ${scrolled ? 'text-gray-700 hover:text-brand-primary hover:bg-gray-100' : 'text-white hover:text-brand-accent hover:bg-white/20'}`}
               aria-label="Toggle menu"
+              whileTap={{ scale: 0.9 }}
             >
               <svg
                 className="h-6 w-6"
@@ -74,33 +101,42 @@ const Navbar = () => {
                   />
                 )}
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg">
+        <motion.div 
+          className="md:hidden bg-white shadow-lg"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <div className="container mx-auto px-4 py-3 space-y-1">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.name}
                 href={link.href}
-                className="block px-3 py-2 rounded-md text-gray-700 hover:text-green-800 hover:bg-gray-100 font-medium transition-colors duration-200"
+                className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-primary hover:bg-gray-100 font-medium transition-colors duration-200"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
                   setIsOpen(false);
                 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.indexOf(link) * 0.05 }}
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
 

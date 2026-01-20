@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-primary': '#2D5A3D',
+            'brand-secondary': '#4A7C5F',
+            'brand-accent': '#E8B4A6',
+            'brand-dark': '#1A2F23',
+            'brand-light': '#F5F8F6',
+          },
+        },
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="bg-brand-light p-8">
+    <h1 class="text-3xl font-bold text-brand-primary mb-4">Tailwind CSS 测试</h1>
+    <p class="text-gray-600 mb-6">这是一个测试页面，用于验证Tailwind CSS样式是否正常工作。</p>
+    <button class="bg-brand-primary hover:bg-brand-secondary text-white font-semibold px-6 py-3 rounded-full transition-all">
+      测试按钮
+    </button>
+  </div>
+</body>
+</html>
