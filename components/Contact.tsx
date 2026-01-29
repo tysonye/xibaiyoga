@@ -54,19 +54,37 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    // 模拟 API 调用
+    // 调用 Cloudflare Worker API
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setSubmitted(true);
-      setFormData({ name: '', phone: '', email: '', message: '' });
-      setErrors({});
+      const response = await fetch('https://xibaiyoga-wxpush.xibai.xin/wxsend', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'AT_bdaslgyQdAAarDuCzu8Jjj0kLUROjaWJ',
+        },
+        body: JSON.stringify({
+          title: '新的留言咨询',
+          content: `姓名：${formData.name}\n电话：${formData.phone}\n邮箱：${formData.email}\n留言内容：${formData.message}`
+        }),
+      });
 
-      // 3秒后重置提交状态
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 3000);
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({ name: '', phone: '', email: '', message: '' });
+        setErrors({});
+
+        // 3秒后重置提交状态
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 3000);
+      } else {
+        throw new Error(result.message || '提交失败');
+      }
     } catch (error) {
       console.error('提交失败:', error);
+      alert('提交失败，请稍后重试');
     } finally {
       setIsSubmitting(false);
     }
