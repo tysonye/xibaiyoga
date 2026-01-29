@@ -65,7 +65,7 @@ const Contact = () => {
           appToken: 'AT_bdaslgyQdAAarDuCzu8Jjj0kLUROjaWJ',
           content: `💬 新留言通知！\n\n姓名：${formData.name}\n电话：${formData.phone}\n邮箱：${formData.email}\n留言内容：${formData.message}\n\n时间：${new Date().toLocaleString()}`,
           contentType: 1,
-          uids: ['UID_0o9vT66pX1y6pX1y6pX1y'],
+          uids: ['UID_3qR0ZDQoXmZLkdHz5pIE9XArVpFn'],
           url: 'https://xibaiyoga.github.io'
         }),
       });
