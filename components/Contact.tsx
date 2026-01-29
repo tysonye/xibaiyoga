@@ -56,21 +56,27 @@ const Contact = () => {
 
     // 调用 Cloudflare Worker API
     try {
-      const response = await fetch('https://xibaiyoga-wxpush.xibai.xin/wxsend', {
+      const response = await fetch('https://wxpusher.zjiecode.com/api/send/message/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'AT_bdaslgyQdAAarDuCzu8Jjj0kLUROjaWJ',
         },
         body: JSON.stringify({
-          title: '新的留言咨询',
-          content: `姓名：${formData.name}\n电话：${formData.phone}\n邮箱：${formData.email}\n留言内容：${formData.message}`
+          appToken: 'AT_bdaslgyQdAAarDuCzu8Jjj0kLUROjaWJ',
+          content: `💬 新留言通知！\n\n姓名：${formData.name}\n电话：${formData.phone}\n邮箱：${formData.email}\n留言内容：${formData.message}\n\n时间：${new Date().toLocaleString()}`,
+          contentType: 1,
+          uids: ['UID_0o9vT66pX1y6pX1y6pX1y'],
+          url: 'https://xibaiyoga.github.io'
         }),
       });
 
+      console.log('响应状态:', response.status);
+      console.log('响应头:', response.headers);
+      
       const result = await response.json();
+      console.log('响应数据:', result);
 
-      if (result.success) {
+      if (result.code === 1000) {
         setSubmitted(true);
         setFormData({ name: '', phone: '', email: '', message: '' });
         setErrors({});
@@ -80,11 +86,11 @@ const Contact = () => {
           setSubmitted(false);
         }, 3000);
       } else {
-        throw new Error(result.message || '提交失败');
+        throw new Error(result.msg || '提交失败');
       }
     } catch (error) {
       console.error('提交失败:', error);
-      alert('提交失败，请稍后重试');
+      alert(`提交失败: ${(error as Error).message || '请稍后重试'}`);
     } finally {
       setIsSubmitting(false);
     }
